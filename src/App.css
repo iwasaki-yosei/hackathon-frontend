@@ -1,0 +1,64 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: dark;
+  background-color: #242424;
+}
+
+body {
+  margin: 0;
+  display: block; /* 変な中央揃え設定を解除 */
+  place-items: unset;
+  min-width: 320px;
+  min-height: 100vh;
+  width: 100%;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+}
+/* App.css - そのまま上書きしてください */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #fff;
+  text-align: center;
+}
+
+h1 { font-size: 2.0rem; margin-bottom: 30px; }
+h2 { border-bottom: 2px solid #444; padding-bottom: 10px; margin-bottom: 20px; }
+
+/* フォーム */
+.sell-form {
+  background-color: #242424;
+  padding: 30px;
+  border-radius: 15px;
+  margin-bottom: 50px;
+  display: flex; flex-direction: column; gap: 15px; text-align: left;
+}
+.sell-form input, .sell-form textarea {
+  padding: 12px; border-radius: 8px; border: 1px solid #555;
+  background-color: #1a1a1a; color: white; font-size: 16px; width: 100%; box-sizing: border-box;
+}
+.sell-form textarea { height: 100px; resize: vertical; }
+.sell-form button {
+  padding: 12px; border: none; border-radius: 8px; background-color: #646cff;
+  color: white; font-weight: bold; cursor: pointer; font-size: 16px;
+}
+.sell-form button:disabled { background-color: #555; cursor: not-allowed; }
+
+/* リスト */
+.item-list ul { padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.item-card {
+  background-color: #242424; border: 1px solid #333; border-radius: 15px;
+  padding: 20px; text-align: left; transition: transform 0.2s;
+}
+.item-card:hover { transform: translateY(-5px); }
+.item-card h3 { margin-top: 0; }
