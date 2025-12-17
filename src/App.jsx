@@ -21,7 +21,7 @@ function App() {
 
   const fetchItems = async () => {
     try {
-      const res = await fetch("http://localhost:8080/items");
+      const res = await fetch("https://hackathon-backend-152213144011.us-central1.run.app/items");
       const data = await res.json();
       setItems(data);
     } catch (err) { console.error(err); }
@@ -31,7 +31,7 @@ function App() {
   const refreshUser = async () => {
     if (!user) return;
     try {
-      const res = await fetch("http://localhost:8080/login", {
+      const res = await fetch("https://hackathon-backend-152213144011.us-central1.run.app/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: user.name }),
@@ -43,7 +43,7 @@ function App() {
   const handleLogin = async () => {
     if (!loginName) return alert("名前を入れてください");
     try {
-      const res = await fetch("http://localhost:8080/login", {
+      const res = await fetch("https://hackathon-backend-152213144011.us-central1.run.app/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: loginName }),
@@ -58,7 +58,7 @@ function App() {
   const handleSell = async () => {
     if (!name || !description) return alert("入力してください");
     try {
-      await fetch("http://localhost:8080/items", {
+      await fetch("https://hackathon-backend-152213144011.us-central1.run.app/items", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         // Priceは送らない（0円）
@@ -75,7 +75,7 @@ function App() {
   const handleBuy = async (itemId) => {
     if(!confirm("このアイテムと交換しますか？")) return;
     try {
-      const res = await fetch(`http://localhost:8080/items/${itemId}/buy`, {
+      const res = await fetch(`https://hackathon-backend-152213144011.us-central1.run.app/items/${itemId}/buy`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ buyer_name: user.name }), // ★自分（交換者）の名前を送る
@@ -92,19 +92,19 @@ function App() {
     if (activeChatId === itemId) { setActiveChatId(null); return; }
     setActiveChatId(itemId);
     setMessages([]);
-    const res = await fetch(`http://localhost:8080/items/${itemId}/messages`);
+    const res = await fetch(`https://hackathon-backend-152213144011.us-central1.run.app/items/${itemId}/messages`);
     setMessages(await res.json());
   };
 
   const sendMessage = async (itemId) => {
     if (!newMessage) return;
-    await fetch(`http://localhost:8080/items/${itemId}/messages`, {
+    await fetch(`https://hackathon-backend-152213144011.us-central1.run.app/items/${itemId}/messages`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ sender_name: user.name, content: newMessage }),
     });
     setNewMessage("");
-    const res = await fetch(`http://localhost:8080/items/${itemId}/messages`);
+    const res = await fetch(`https://hackathon-backend-152213144011.us-central1.run.app/items/${itemId}/messages`);
     setMessages(await res.json());
   };
 
@@ -114,7 +114,7 @@ function App() {
     setLoadingAI(true);
     try {
       // 自分のサーバーの /generate エンドポイントにリクエストを送る
-      const res = await fetch("http://localhost:8080/generate", {
+      const res = await fetch("https://hackathon-backend-152213144011.us-central1.run.app/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ 
